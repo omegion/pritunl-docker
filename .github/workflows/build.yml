@@ -34,7 +34,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: $e{{ steps.secrets.outputs.GITHUB_REGISTRY_TOKEN }}
+          password: ${{ steps.secrets.outputs.GITHUB_REGISTRY_TOKEN }}
 
       - name: Build and push to GitHub
         id: github_build
