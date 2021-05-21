@@ -24,7 +24,7 @@ services:
       - ./db:/data/db
 
   pritunl:
-    image: omegion/pritunl:latest
+    image: ghcr.io/omegion/pritunl:latest
     container_name: pritunl
     hostname: pritunl
     depends_on:
