@@ -33,9 +33,11 @@ services:
     privileged: true
     restart: always
     command: >
-      set --record=pi-1.omegion.dev --zone=omegion.dev --dns-provider=cloudflare --logLevel debug --daemon
+      set --record=${RECORD} --zone=${ZONE} --dns-provider=cloudflare --logLevel debug --daemon
     environment:
-      - CF_API_KEY=<YOUR_KEY>
+      - CF_API_KEY
+      - RECORD
+      - ZONE
 
   mongo:
     image: mongo:latest
