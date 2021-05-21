@@ -48,6 +48,8 @@ jobs:
           push: true
           tags: ghcr.io/omegion/pritunl:latest,ghcr.io/omegion/pritunl:${{ steps.get_version.outputs.VERSION }}
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERSION=${{ steps.get_version.outputs.VERSION }}
 
       - name: Build Changelog
         id: github_release

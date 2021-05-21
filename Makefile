@@ -1,6 +1,7 @@
 ARCH 	= arm64v8
 VERSION = 1.29.2664.67
 
+.PHONY: build
 build:
 	docker buildx build \
 		--platform linux/amd64,linux/arm64 \
@@ -8,5 +9,12 @@ build:
 		-t omegion/pritunl:$(VERSION) \
 		--push .
 
+.PHONY: start
 start:
 	docker-compose up -d
+
+.PHONY: cut-tag
+cut-tag:
+	@echo "Cutting $(version)"
+	git tag $(version)
+	git push origin $(version)
