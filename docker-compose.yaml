@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  ddclient:
+    image: ghcr.io/omegion/ddclient:latest-arm
+    container_name: ddclient
+    network_mode: bridge
+    privileged: true
+    restart: always
+    command: >
+      set --record=${RECORD} --zone=${ZONE} --dns-provider=cloudflare --logLevel debug --daemon
+    environment:
+      - CF_API_KEY
+      - RECORD
+      - ZONE
+
+  mongo:
+    image: mongo:latest
+    container_name: pritunldb
+    hostname: pritunldb
+    network_mode: bridge
+    restart: always
+    volumes:
+      - ./db:/data/db
+
+  pritunl:
+    image: omegion/pritunl:latest
+    container_name: pritunl
+    hostname: pritunl
+    depends_on:
+      - mongo
+    network_mode: bridge
+    privileged: true
+    restart: always
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    links:
+      - mongo
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 80:80
+      - 443:443
+      - 1194:1194
+      - 1194:1194/udp
+      - 1195:1195/udp
+    environment:
+      - TZ=UTC
