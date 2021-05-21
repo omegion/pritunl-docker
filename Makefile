@@ -13,6 +13,10 @@ build:
 start:
 	docker-compose up -d
 
+.PHONY: stop
+stop:
+	docker-compose down
+
 .PHONY: cut-tag
 cut-tag:
 	@echo "Cutting $(version)"
