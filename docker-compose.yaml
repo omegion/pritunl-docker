@@ -44,4 +44,3 @@ services:
       - 1194:1194/udp
     environment:
       - TZ=UTC
-      - PRITUNL_SERVER_PORT=443

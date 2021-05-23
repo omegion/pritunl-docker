@@ -17,7 +17,6 @@ pritunl_setup() {
     ${PRITUNL} set app.reverse_proxy false
     ${PRITUNL} set app.redirect_server true
     ${PRITUNL} set app.server_ssl true
-    ${PRITUNL} set app.server_port ${PRITUNL_SERVER_PORT:-443}
 
     PRITUNL_OPTS="start ${PRITUNL_OPTS}"
 }
