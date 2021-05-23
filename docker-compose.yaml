@@ -8,7 +8,7 @@ services:
     privileged: true
     restart: always
     command: >
-      set --record=${RECORD} --zone=${ZONE} --dns-provider=cloudflare --logLevel debug --daemon
+      set --record=${RECORD} --zone=${ZONE} --dns-provider=cloudflare --logLevel debug --interval 5 --daemon
     environment:
       - CF_API_KEY
       - RECORD
@@ -39,10 +39,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - 80:80
       - 443:443
       - 1194:1194
       - 1194:1194/udp
-      - 1195:1195/udp
     environment:
       - TZ=UTC
