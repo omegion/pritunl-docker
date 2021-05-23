@@ -2,7 +2,7 @@ version: '3'
 
 services:
   ddclient:
-    image: ghcr.io/omegion/ddclient:latest-arm
+    image: ghcr.io/omegion/ddclient:latest
     container_name: ddclient
     network_mode: bridge
     privileged: true
@@ -39,9 +39,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - 7443:7443
+      - 443:443
       - 1194:1194
       - 1194:1194/udp
     environment:
       - TZ=UTC
-      - PRITUNL_SERVER_PORT=7443
+      - PRITUNL_SERVER_PORT=443
