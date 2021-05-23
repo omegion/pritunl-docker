@@ -39,8 +39,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - 443:443
+      - 7443:7443
       - 1194:1194
       - 1194:1194/udp
     environment:
       - TZ=UTC
+      - PRITUNL_SERVER_PORT=7443
