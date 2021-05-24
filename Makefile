@@ -11,7 +11,7 @@ build:
 
 .PHONY: start
 start:
-	docker pull ghcr.io/omegion/pritunl:latest
+	docker-compose pull
 	docker-compose up -d
 
 .PHONY: stop
